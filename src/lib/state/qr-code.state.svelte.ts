@@ -2,7 +2,9 @@ import type {
 	CornerDotType,
 	CornerSquareType,
 	DotType,
+	ErrorCorrectionLevel,
 	Options,
+	TypeNumber,
 } from 'qr-code-styling';
 
 function create_qr_state() {
@@ -26,42 +28,63 @@ function create_qr_state() {
 
 	// Image options state
 	let image_src = $state<string | null>(null);
-	let hide_background_dots = $state(false);
-	let image_size = $state(0.4); // 40% of QR size
 	let image_margin = $state(5);
+	let image_size = $state(0.4); // 40% of QR size
+
+	// QR code settings
+	let error_correction = $state<ErrorCorrectionLevel>('M');
+	let type_number = $state<TypeNumber>(0);
 
 	// QR code instance reference
 	let qr_code = $state<any>(null);
 	let qr_element = $state<HTMLDivElement | null>(null);
 
 	// Derived state for QR code configuration
-	let qr_config = $derived<Partial<Options>>({
-		width: qr_size,
-		height: qr_size,
-		type: 'svg',
-		data: url_input,
-		margin: margin,
-		dotsOptions: {
-			color: dot_color,
-			type: dot_style,
-		},
-		cornersSquareOptions: {
-			type: corner_square_style,
-			color: corner_square_color,
-		},
-		cornersDotOptions: {
-			type: corner_dot_style,
-			color: corner_dot_color,
-		},
-		backgroundOptions: {
-			color: background_color,
-		},
-		imageOptions: {
-			hideBackgroundDots: hide_background_dots,
-			imageSize: image_size,
-			margin: image_margin,
-		},
-	});
+	let qr_config = $derived<Partial<Options>>(
+		(() => {
+			const base_config = {
+				width: qr_size,
+				height: qr_size,
+				type: 'svg' as const,
+				data: url_input,
+				margin,
+				qrOptions: {
+					typeNumber: type_number,
+					errorCorrectionLevel: error_correction,
+				},
+				dotsOptions: {
+					color: dot_color || '#000000',
+					type: dot_style,
+				},
+				cornersSquareOptions: {
+					type: corner_square_style,
+					color: corner_square_color || '#000000',
+				},
+				cornersDotOptions: {
+					type: corner_dot_style,
+					color: corner_dot_color || '#000000',
+				},
+				backgroundOptions: {
+					color: background_color || '#ffffff',
+				},
+			};
+
+			if (image_src) {
+				return {
+					...base_config,
+					image: image_src,
+					imageOptions: {
+						hideBackgroundDots: true,
+						imageSize: image_size,
+						margin: image_margin,
+						crossOrigin: 'anonymous',
+					},
+				};
+			}
+
+			return base_config;
+		})(),
+	);
 
 	return {
 		get url_input() {
@@ -141,11 +164,11 @@ function create_qr_state() {
 			image_src = v;
 		},
 
-		get hide_background_dots() {
-			return hide_background_dots;
+		get image_margin() {
+			return image_margin;
 		},
-		set hide_background_dots(v: boolean) {
-			hide_background_dots = v;
+		set image_margin(v: number) {
+			image_margin = v;
 		},
 
 		get image_size() {
@@ -155,11 +178,18 @@ function create_qr_state() {
 			image_size = v;
 		},
 
-		get image_margin() {
-			return image_margin;
+		get error_correction() {
+			return error_correction;
 		},
-		set image_margin(v: number) {
-			image_margin = v;
+		set error_correction(v: ErrorCorrectionLevel) {
+			error_correction = v;
+		},
+
+		get type_number() {
+			return type_number;
+		},
+		set type_number(v: TypeNumber) {
+			type_number = v;
 		},
 
 		get qr_code() {

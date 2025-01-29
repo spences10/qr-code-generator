@@ -74,6 +74,124 @@
 							</div>
 						</div>
 
+						<!-- QR Settings -->
+						<div class="form-control mt-6 w-full">
+							<label for="margin" class="label">
+								<span class="label-text">Margin</span>
+								<span class="label-text-alt opacity-60"
+									>{qr_state.margin}px</span
+								>
+							</label>
+							<div class="flex items-center gap-2">
+								<span class="text-xs opacity-60">0px</span>
+								<input
+									type="range"
+									id="margin"
+									bind:value={qr_state.margin}
+									min="0"
+									max="50"
+									step="5"
+									class="range range-xs flex-1"
+									oninput={generate_qr_code}
+								/>
+								<span class="text-xs opacity-60">50px</span>
+							</div>
+						</div>
+
+						<div class="form-control mt-6 w-full">
+							<label for="error_correction" class="label">
+								<span class="label-text">Error Correction</span>
+							</label>
+							<select
+								id="error_correction"
+								bind:value={qr_state.error_correction}
+								class="select select-sm w-full border-0 bg-base-100"
+								onchange={generate_qr_code}
+							>
+								<option value="L">Low (7%)</option>
+								<option value="M">Medium (15%)</option>
+								<option value="Q">Quartile (25%)</option>
+								<option value="H">High (30%)</option>
+							</select>
+						</div>
+
+						<!-- Logo/Image Settings -->
+						<div class="divider my-6 opacity-30">Logo Settings</div>
+
+						<div class="form-control w-full">
+							<label class="label">
+								<span class="label-text">Upload Logo</span>
+							</label>
+							<input
+								type="file"
+								accept="image/*"
+								class="file-input file-input-sm w-full border-0 bg-base-100"
+								onchange={(e) => {
+									const input = e.target as HTMLInputElement;
+									const file = input.files?.[0];
+									if (file) {
+										const reader = new FileReader();
+										reader.onload = (e) => {
+											const result = e.target?.result;
+											if (typeof result === 'string') {
+												qr_state.image_src = result;
+												generate_qr_code();
+											}
+										};
+										reader.readAsDataURL(file);
+									}
+								}}
+							/>
+						</div>
+
+						{#if qr_state.image_src}
+							<div class="form-control mt-4 w-full">
+								<label for="image_size" class="label">
+									<span class="label-text">Logo Size</span>
+									<span class="label-text-alt opacity-60"
+										>{Math.round(qr_state.image_size * 100)}%</span
+									>
+								</label>
+								<div class="flex items-center gap-2">
+									<span class="text-xs opacity-60">10%</span>
+									<input
+										type="range"
+										id="image_size"
+										bind:value={qr_state.image_size}
+										min="0.1"
+										max="0.9"
+										step="0.1"
+										class="range range-xs flex-1"
+										oninput={generate_qr_code}
+									/>
+									<span class="text-xs opacity-60">90%</span>
+								</div>
+							</div>
+
+							<div class="form-control mt-4 w-full">
+								<label for="image_margin" class="label">
+									<span class="label-text">Logo Margin</span>
+									<span class="label-text-alt opacity-60"
+										>{qr_state.image_margin}px</span
+									>
+								</label>
+								<div class="flex items-center gap-2">
+									<span class="text-xs opacity-60">0px</span>
+									<input
+										type="range"
+										id="image_margin"
+										bind:value={qr_state.image_margin}
+										min="0"
+										max="20"
+										step="1"
+										class="range range-xs flex-1"
+										oninput={generate_qr_code}
+									/>
+									<span class="text-xs opacity-60">20px</span>
+								</div>
+							</div>
+						{/if}
+
 						<!-- Style Options -->
 						<div class="divider my-6 opacity-30">Style Options</div>
 
@@ -258,7 +376,7 @@
 						<div
 							class="flex aspect-square w-full items-center justify-center rounded-xl bg-base-200/50"
 							bind:this={element}
-						/>
+						></div>
 						<div class="card-actions justify-end gap-2">
 							<button
 								class="btn btn-outline btn-sm"
