@@ -1,38 +1,89 @@
-# sv
+# QR Code Generator
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A beautiful and feature-rich QR code generator built with SvelteKit and DaisyUI, powered by [qr-code-styling](https://qr-code-styling.com/).
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+### Main Options
 
-```bash
-# create a new project in the current directory
-npx sv create
+- URL input for QR code generation
+- Logo upload capability
+- Adjustable QR code size (100px - 500px)
+- Customizable margin (0px - 50px)
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Dots Customization
 
-## Developing
+- Multiple dot patterns:
+  - Rounded
+  - Dots
+  - Classy
+  - Classy Rounded
+  - Square
+  - Extra Rounded
+- Color customization:
+  - Single color
+  - Gradient options (Linear/Radial with rotation)
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Corner Square Customization
 
-```bash
-npm run dev
+- Various corner square styles:
+  - Rounded
+  - Dots
+  - Square
+  - Extra Rounded
+- Color customization:
+  - Single color
+  - Gradient options (Linear/Radial with rotation)
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Corner Dot Customization
 
-## Building
+- Multiple corner dot styles:
+  - Rounded
+  - Dots
+  - Square
+- Color customization:
+  - Single color
+  - Gradient options (Linear/Radial with rotation)
 
-To create a production version of your app:
+### Background Options
 
-```bash
-npm run build
-```
+- Background color customization:
+  - Single color
+  - Gradient options (Linear/Radial with rotation)
 
-You can preview the production build with `npm run preview`.
+### Image/Logo Options
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Upload and embed logos
+- Adjustable image size (10% - 90%)
+- Customizable image margin (0px - 20px)
+- Option to hide background dots
+
+### QR Code Settings
+
+- Adjustable type number (0-40)
+- Error correction levels:
+  - Low (7%)
+  - Medium (15%)
+  - Quartile (25%)
+  - High (30%)
+
+### Export Options
+
+- Copy to clipboard functionality
+- Download as SVG
+
+## Tech Stack
+
+- SvelteKit
+- TypeScript
+- DaisyUI
+- TailwindCSS
+- qr-code-styling
+
+## Credits
+
+This project uses the [qr-code-styling](https://qr-code-styling.com/) library by Denys Kozak for QR code generation and styling.
+
+## License
+
+MIT
