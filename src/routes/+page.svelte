@@ -21,52 +21,46 @@
 	});
 </script>
 
-<div class="bg-base-200 min-h-screen py-8">
+<main class="bg-base-200 min-h-screen py-8">
 	<div class="container mx-auto px-4">
-		<!-- Header -->
-		<div class="mb-8 text-center">
+		<header class="mb-8 text-center">
 			<h1 class="text-4xl font-bold">QR Code Generator</h1>
 			<p class="text-base-content/70 mt-2">
 				Create beautiful, customized QR codes in seconds
 			</p>
-		</div>
+		</header>
 
 		<div class="grid gap-8 lg:grid-cols-12">
 			<!-- Controls -->
-			<div class="order-1 lg:col-span-6">
+			<section class="order-1 lg:col-span-6">
 				<div class="card bg-base-100 shadow-xl">
-					<div class="card-body space-y-4">
+					<form class="card-body space-y-4">
 						<!-- Main Options -->
-						<div class="rounded-box bg-base-200">
-							<div
-								class="rounded-box bg-base-300 flex items-center justify-between px-4 py-2"
+						<fieldset class="rounded-box bg-base-200">
+							<legend
+								class="rounded-box bg-base-300 w-full px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Main Options</h3>
-							</div>
+							</legend>
 							<div class="space-y-4 p-4">
 								<!-- URL Input -->
-								<div class="form-control w-full">
-									<label for="url_input" class="label">
-										<span class="label-text">Enter URL</span>
-									</label>
+								<label class="w-full">
+									<span class="label-text">Enter URL</span>
 									<input
 										type="url"
-										id="url_input"
 										bind:value={qr_state.url_input}
 										placeholder="https://example.com"
-										class="input bg-base-100 w-full border-0 focus:outline-none"
+										class="input bg-base-100 mt-2 w-full border-0 focus:outline-none"
 									/>
-								</div>
+								</label>
 
 								<!-- Image Upload -->
-								<div class="form-control w-full">
-									<label for="image_upload" class="label">
-										<span class="label-text">Upload Logo</span>
-									</label>
+								<label class="w-full">
+									<span class="label-text">Upload Logo</span>
 									<input
 										type="file"
 										accept="image/*"
-										class="file-input file-input-sm bg-base-100 w-full border-0"
+										class="file-input file-input-sm bg-base-100 mt-2 w-full border-0"
 										onchange={(e) => {
 											const input = e.target as HTMLInputElement;
 											const file = input.files?.[0];
@@ -83,21 +77,20 @@
 											}
 										}}
 									/>
-								</div>
+								</label>
 
 								<!-- Size Control -->
-								<div class="form-control w-full">
-									<label for="size" class="label">
+								<label class="w-full">
+									<div class="flex justify-between">
 										<span class="label-text">Size</span>
-										<span class="label-text-alt opacity-60"
-											>{qr_state.qr_size}px</span
-										>
-									</label>
-									<div class="flex items-center gap-2">
+										<span class="text-sm opacity-60">
+											{qr_state.qr_size}px
+										</span>
+									</div>
+									<div class="mt-2 flex items-center gap-2">
 										<span class="text-xs opacity-60">100px</span>
 										<input
 											type="range"
-											id="size"
 											bind:value={qr_state.qr_size}
 											min="100"
 											max="500"
@@ -107,21 +100,20 @@
 										/>
 										<span class="text-xs opacity-60">500px</span>
 									</div>
-								</div>
+								</label>
 
 								<!-- Margin -->
-								<div class="form-control w-full">
-									<label for="margin" class="label">
+								<label class="w-full">
+									<div class="flex justify-between">
 										<span class="label-text">Margin</span>
-										<span class="label-text-alt opacity-60"
-											>{qr_state.margin}px</span
-										>
-									</label>
-									<div class="flex items-center gap-2">
+										<span class="text-sm opacity-60">
+											{qr_state.margin}px
+										</span>
+									</div>
+									<div class="mt-2 flex items-center gap-2">
 										<span class="text-xs opacity-60">0px</span>
 										<input
 											type="range"
-											id="margin"
 											bind:value={qr_state.margin}
 											min="0"
 											max="50"
@@ -131,27 +123,24 @@
 										/>
 										<span class="text-xs opacity-60">50px</span>
 									</div>
-								</div>
+								</label>
 							</div>
-						</div>
+						</fieldset>
 
 						<!-- Dots Options -->
-						<div class="bg-base-200 collapse">
+						<fieldset class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
-							<div
+							<legend
 								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Dots Options</h3>
-							</div>
+							</legend>
 							<div class="collapse-content space-y-4 p-4">
-								<div class="form-control">
-									<label for="style" class="label">
-										<span class="label-text">Pattern</span>
-									</label>
+								<label>
+									<span class="label-text">Pattern</span>
 									<select
-										id="style"
 										bind:value={qr_state.dot_style}
-										class="select select-sm bg-base-100 w-full border-0"
+										class="select select-sm bg-base-100 mt-2 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -165,70 +154,64 @@
 											>Extra Rounded</option
 										>
 									</select>
-								</div>
+								</label>
 
-								<div class="form-control">
-									<label class="label cursor-pointer">
-										<span class="label-text">Color Type</span>
-										<div class="flex gap-4">
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="dot_color_type"
-													checked
-												/>
-												<span class="label-text">Single</span>
-											</label>
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="dot_color_type"
-												/>
-												<span class="label-text">Gradient</span>
-											</label>
-										</div>
-									</label>
-								</div>
+								<fieldset>
+									<legend class="label-text">Color Type</legend>
+									<div class="mt-2 flex gap-4">
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="dot_color_type"
+												checked
+											/>
+											<span class="label-text">Single</span>
+										</label>
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="dot_color_type"
+											/>
+											<span class="label-text">Gradient</span>
+										</label>
+									</div>
+								</fieldset>
 
-								<div class="form-control">
-									<label for="dot_color" class="label">
+								<label>
+									<div class="flex justify-between">
 										<span class="label-text">Color</span>
-										<span class="label-text-alt opacity-60"
+										<span class="text-sm opacity-60"
 											>{qr_state.dot_color}</span
 										>
-									</label>
+									</div>
 									<input
 										type="color"
-										id="dot_color"
 										bind:value={qr_state.dot_color}
-										class="h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
+										class="mt-2 h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
 										oninput={generate_qr_code}
 									/>
-								</div>
+								</label>
 							</div>
-						</div>
+						</fieldset>
 
 						<!-- Corner Square Options -->
-						<div class="bg-base-200 collapse">
+						<fieldset class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
-							<div
+							<legend
 								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Square Options
 								</h3>
-							</div>
+							</legend>
 							<div class="collapse-content space-y-4 p-4">
-								<div class="form-control">
-									<label for="corner_square_style" class="label">
-										<span class="label-text">Pattern</span>
-									</label>
+								<label>
+									<span class="label-text">Pattern</span>
 									<select
-										id="corner_square_style"
 										bind:value={qr_state.corner_square_style}
-										class="select select-sm bg-base-100 w-full border-0"
+										class="select select-sm bg-base-100 mt-2 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -238,212 +221,197 @@
 											>Extra Rounded</option
 										>
 									</select>
-								</div>
+								</label>
 
-								<div class="form-control">
-									<label class="label cursor-pointer">
-										<span class="label-text">Color Type</span>
-										<div class="flex gap-4">
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="corner_square_color_type"
-													checked
-												/>
-												<span class="label-text">Single</span>
-											</label>
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="corner_square_color_type"
-												/>
-												<span class="label-text">Gradient</span>
-											</label>
-										</div>
-									</label>
-								</div>
+								<fieldset>
+									<legend class="label-text">Color Type</legend>
+									<div class="mt-2 flex gap-4">
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="corner_square_color_type"
+												checked
+											/>
+											<span class="label-text">Single</span>
+										</label>
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="corner_square_color_type"
+											/>
+											<span class="label-text">Gradient</span>
+										</label>
+									</div>
+								</fieldset>
 
-								<div class="form-control">
-									<label for="corner_square_color" class="label">
+								<label>
+									<div class="flex justify-between">
 										<span class="label-text">Color</span>
-										<span class="label-text-alt opacity-60"
+										<span class="text-sm opacity-60"
 											>{qr_state.corner_square_color}</span
 										>
-									</label>
+									</div>
 									<input
 										type="color"
-										id="corner_square_color"
 										bind:value={qr_state.corner_square_color}
-										class="h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
+										class="mt-2 h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
 										oninput={generate_qr_code}
 									/>
-								</div>
+								</label>
 							</div>
-						</div>
+						</fieldset>
 
 						<!-- Corner Dot Options -->
-						<div class="bg-base-200 collapse">
+						<fieldset class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
-							<div
+							<legend
 								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Dot Options
 								</h3>
-							</div>
+							</legend>
 							<div class="collapse-content space-y-4 p-4">
-								<div class="form-control">
-									<label for="corner_dot_style" class="label">
-										<span class="label-text">Pattern</span>
-									</label>
+								<label>
+									<span class="label-text">Pattern</span>
 									<select
-										id="corner_dot_style"
 										bind:value={qr_state.corner_dot_style}
-										class="select select-sm bg-base-100 w-full border-0"
+										class="select select-sm bg-base-100 mt-2 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
 										<option value="dots">Dots</option>
 										<option value="square">Square</option>
 									</select>
-								</div>
+								</label>
 
-								<div class="form-control">
-									<label class="label cursor-pointer">
-										<span class="label-text">Color Type</span>
-										<div class="flex gap-4">
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="corner_dot_color_type"
-													checked
-												/>
-												<span class="label-text">Single</span>
-											</label>
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="corner_dot_color_type"
-												/>
-												<span class="label-text">Gradient</span>
-											</label>
-										</div>
-									</label>
-								</div>
+								<fieldset>
+									<legend class="label-text">Color Type</legend>
+									<div class="mt-2 flex gap-4">
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="corner_dot_color_type"
+												checked
+											/>
+											<span class="label-text">Single</span>
+										</label>
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="corner_dot_color_type"
+											/>
+											<span class="label-text">Gradient</span>
+										</label>
+									</div>
+								</fieldset>
 
-								<div class="form-control">
-									<label for="corner_dot_color" class="label">
+								<label>
+									<div class="flex justify-between">
 										<span class="label-text">Color</span>
-										<span class="label-text-alt opacity-60"
+										<span class="text-sm opacity-60"
 											>{qr_state.corner_dot_color}</span
 										>
-									</label>
+									</div>
 									<input
 										type="color"
-										id="corner_dot_color"
 										bind:value={qr_state.corner_dot_color}
-										class="h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
+										class="mt-2 h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
 										oninput={generate_qr_code}
 									/>
-								</div>
+								</label>
 							</div>
-						</div>
+						</fieldset>
 
 						<!-- Background Options -->
-						<div class="bg-base-200 collapse">
+						<fieldset class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
-							<div
+							<legend
 								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Background Options
 								</h3>
-							</div>
+							</legend>
 							<div class="collapse-content space-y-4 p-4">
-								<div class="form-control">
-									<label class="label cursor-pointer">
-										<span class="label-text">Color Type</span>
-										<div class="flex gap-4">
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="background_color_type"
-													checked
-												/>
-												<span class="label-text">Single</span>
-											</label>
-											<label class="flex items-center gap-2">
-												<input
-													type="radio"
-													class="radio radio-sm"
-													name="background_color_type"
-												/>
-												<span class="label-text">Gradient</span>
-											</label>
-										</div>
-									</label>
-								</div>
+								<fieldset>
+									<legend class="label-text">Color Type</legend>
+									<div class="mt-2 flex gap-4">
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="background_color_type"
+												checked
+											/>
+											<span class="label-text">Single</span>
+										</label>
+										<label class="flex items-center gap-2">
+											<input
+												type="radio"
+												class="radio radio-sm"
+												name="background_color_type"
+											/>
+											<span class="label-text">Gradient</span>
+										</label>
+									</div>
+								</fieldset>
 
-								<div class="form-control">
-									<label for="background_color" class="label">
+								<label>
+									<div class="flex justify-between">
 										<span class="label-text">Color</span>
-										<span class="label-text-alt opacity-60"
+										<span class="text-sm opacity-60"
 											>{qr_state.background_color}</span
 										>
-									</label>
+									</div>
 									<input
 										type="color"
-										id="background_color"
 										bind:value={qr_state.background_color}
-										class="h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
+										class="mt-2 h-8 w-8 cursor-pointer appearance-none border-0 bg-transparent"
 										oninput={generate_qr_code}
 									/>
-								</div>
+								</label>
 							</div>
-						</div>
+						</fieldset>
 
 						<!-- Image Options -->
 						{#if qr_state.image_src}
-							<div class="bg-base-200 collapse">
+							<fieldset class="bg-base-200 collapse">
 								<input type="checkbox" class="min-h-0" checked />
-								<div
+								<legend
 									class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 								>
 									<h3 class="text-sm font-medium">Image Options</h3>
-								</div>
+								</legend>
 								<div class="collapse-content space-y-4 p-4">
-									<div class="form-control">
-										<label class="label cursor-pointer">
-											<span class="label-text"
-												>Hide Background Dots</span
-											>
-											<input
-												type="checkbox"
-												class="checkbox checkbox-sm"
-												checked
-											/>
-										</label>
-									</div>
+									<label class="flex items-center justify-between">
+										<span class="label-text"
+											>Hide Background Dots</span
+										>
+										<input
+											type="checkbox"
+											class="checkbox checkbox-sm"
+											checked
+										/>
+									</label>
 
-									<div class="form-control">
-										<label for="image_size" class="label">
+									<label>
+										<div class="flex justify-between">
 											<span class="label-text">Image Size</span>
-											<span class="label-text-alt opacity-60"
+											<span class="text-sm opacity-60"
 												>{Math.round(
 													qr_state.image_size * 100,
 												)}%</span
 											>
-										</label>
-										<div class="flex items-center gap-2">
+										</div>
+										<div class="mt-2 flex items-center gap-2">
 											<span class="text-xs opacity-60">10%</span>
 											<input
 												type="range"
-												id="image_size"
 												bind:value={qr_state.image_size}
 												min="0.1"
 												max="0.9"
@@ -453,20 +421,19 @@
 											/>
 											<span class="text-xs opacity-60">90%</span>
 										</div>
-									</div>
+									</label>
 
-									<div class="form-control">
-										<label for="image_margin" class="label">
+									<label>
+										<div class="flex justify-between">
 											<span class="label-text">Image Margin</span>
-											<span class="label-text-alt opacity-60"
+											<span class="text-sm opacity-60"
 												>{qr_state.image_margin}px</span
 											>
-										</label>
-										<div class="flex items-center gap-2">
+										</div>
+										<div class="mt-2 flex items-center gap-2">
 											<span class="text-xs opacity-60">0px</span>
 											<input
 												type="range"
-												id="image_margin"
 												bind:value={qr_state.image_margin}
 												min="0"
 												max="20"
@@ -476,43 +443,37 @@
 											/>
 											<span class="text-xs opacity-60">20px</span>
 										</div>
-									</div>
+									</label>
 								</div>
-							</div>
+							</fieldset>
 						{/if}
 
 						<!-- QR Options -->
-						<div class="bg-base-200 collapse">
+						<fieldset class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
-							<div
+							<legend
 								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">QR Options</h3>
-							</div>
+							</legend>
 							<div class="collapse-content space-y-4 p-4">
-								<div class="form-control">
-									<label for="type_number" class="label">
-										<span class="label-text">Type Number</span>
-									</label>
+								<label>
+									<span class="label-text">Type Number</span>
 									<input
 										type="number"
-										id="type_number"
 										bind:value={qr_state.type_number}
 										min="0"
 										max="40"
-										class="input input-sm bg-base-100 w-full border-0"
+										class="input input-sm bg-base-100 mt-2 w-full border-0"
 										oninput={generate_qr_code}
 									/>
-								</div>
+								</label>
 
-								<div class="form-control">
-									<label for="error_correction" class="label">
-										<span class="label-text">Error Correction</span>
-									</label>
+								<label>
+									<span class="label-text">Error Correction</span>
 									<select
-										id="error_correction"
 										bind:value={qr_state.error_correction}
-										class="select select-sm bg-base-100 w-full border-0"
+										class="select select-sm bg-base-100 mt-2 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="L">Low (7%)</option>
@@ -520,15 +481,15 @@
 										<option value="Q">Quartile (25%)</option>
 										<option value="H">High (30%)</option>
 									</select>
-								</div>
+								</label>
 							</div>
-						</div>
-					</div>
+						</fieldset>
+					</form>
 				</div>
-			</div>
+			</section>
 
 			<!-- QR Code Preview -->
-			<div class="order-2 h-fit lg:sticky lg:top-8 lg:col-span-6">
+			<section class="order-2 h-fit lg:sticky lg:top-8 lg:col-span-6">
 				<div class="card bg-base-100 shadow-xl">
 					<div class="card-body">
 						<h2 class="card-title">Preview</h2>
@@ -590,7 +551,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</div>
-</div>
+</main>
