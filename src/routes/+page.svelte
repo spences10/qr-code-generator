@@ -21,12 +21,12 @@
 	});
 </script>
 
-<div class="min-h-screen bg-base-200 py-8">
+<div class="bg-base-200 min-h-screen py-8">
 	<div class="container mx-auto px-4">
 		<!-- Header -->
 		<div class="mb-8 text-center">
 			<h1 class="text-4xl font-bold">QR Code Generator</h1>
-			<p class="mt-2 text-base-content/70">
+			<p class="text-base-content/70 mt-2">
 				Create beautiful, customized QR codes in seconds
 			</p>
 		</div>
@@ -39,7 +39,7 @@
 						<!-- Main Options -->
 						<div class="rounded-box bg-base-200">
 							<div
-								class="flex items-center justify-between rounded-box bg-base-300 px-4 py-2"
+								class="rounded-box bg-base-300 flex items-center justify-between px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Main Options</h3>
 							</div>
@@ -54,7 +54,7 @@
 										id="url_input"
 										bind:value={qr_state.url_input}
 										placeholder="https://example.com"
-										class="input w-full border-0 bg-base-100 focus:outline-none"
+										class="input bg-base-100 w-full border-0 focus:outline-none"
 									/>
 								</div>
 
@@ -66,7 +66,7 @@
 									<input
 										type="file"
 										accept="image/*"
-										class="file-input file-input-sm w-full border-0 bg-base-100"
+										class="file-input file-input-sm bg-base-100 w-full border-0"
 										onchange={(e) => {
 											const input = e.target as HTMLInputElement;
 											const file = input.files?.[0];
@@ -136,10 +136,10 @@
 						</div>
 
 						<!-- Dots Options -->
-						<div class="collapse bg-base-200">
+						<div class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
 							<div
-								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Dots Options</h3>
 							</div>
@@ -151,7 +151,7 @@
 									<select
 										id="style"
 										bind:value={qr_state.dot_style}
-										class="select select-sm w-full border-0 bg-base-100"
+										class="select select-sm bg-base-100 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -211,10 +211,10 @@
 						</div>
 
 						<!-- Corner Square Options -->
-						<div class="collapse bg-base-200">
+						<div class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
 							<div
-								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Square Options
@@ -228,7 +228,7 @@
 									<select
 										id="corner_square_style"
 										bind:value={qr_state.corner_square_style}
-										class="select select-sm w-full border-0 bg-base-100"
+										class="select select-sm bg-base-100 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -284,10 +284,10 @@
 						</div>
 
 						<!-- Corner Dot Options -->
-						<div class="collapse bg-base-200">
+						<div class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
 							<div
-								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Dot Options
@@ -301,7 +301,7 @@
 									<select
 										id="corner_dot_style"
 										bind:value={qr_state.corner_dot_style}
-										class="select select-sm w-full border-0 bg-base-100"
+										class="select select-sm bg-base-100 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -354,10 +354,10 @@
 						</div>
 
 						<!-- Background Options -->
-						<div class="collapse bg-base-200">
+						<div class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
 							<div
-								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Background Options
@@ -409,10 +409,10 @@
 
 						<!-- Image Options -->
 						{#if qr_state.image_src}
-							<div class="collapse bg-base-200">
+							<div class="bg-base-200 collapse">
 								<input type="checkbox" class="min-h-0" checked />
 								<div
-									class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+									class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 								>
 									<h3 class="text-sm font-medium">Image Options</h3>
 								</div>
@@ -482,10 +482,10 @@
 						{/if}
 
 						<!-- QR Options -->
-						<div class="collapse bg-base-200">
+						<div class="bg-base-200 collapse">
 							<input type="checkbox" class="min-h-0" checked />
 							<div
-								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
+								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">QR Options</h3>
 							</div>
@@ -500,7 +500,7 @@
 										bind:value={qr_state.type_number}
 										min="0"
 										max="40"
-										class="input input-sm w-full border-0 bg-base-100"
+										class="input input-sm bg-base-100 w-full border-0"
 										oninput={generate_qr_code}
 									/>
 								</div>
@@ -512,7 +512,7 @@
 									<select
 										id="error_correction"
 										bind:value={qr_state.error_correction}
-										class="select select-sm w-full border-0 bg-base-100"
+										class="select select-sm bg-base-100 w-full border-0"
 										onchange={generate_qr_code}
 									>
 										<option value="L">Low (7%)</option>
@@ -533,7 +533,7 @@
 					<div class="card-body">
 						<h2 class="card-title">Preview</h2>
 						<div
-							class="flex aspect-square w-full items-center justify-center rounded-box bg-base-200/50"
+							class="rounded-box bg-base-200/50 flex aspect-square w-full items-center justify-center"
 							bind:this={element}
 						></div>
 						<div class="card-actions justify-end gap-2">
