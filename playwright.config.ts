@@ -1,8 +1,9 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
+	use: { baseURL: 'http://localhost:4173' },
 	webServer: {
-		command: 'npm run build && npm run preview',
+		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
 	},
 

@@ -1,6 +1,8 @@
 # QR Code Generator
 
-A beautiful and feature-rich QR code generator built with SvelteKit and DaisyUI, powered by [qr-code-styling](https://qr-code-styling.com/).
+A beautiful and feature-rich QR code generator built with SvelteKit
+and DaisyUI, powered by
+[qr-code-styling](https://qr-code-styling.com/).
 
 ## Features
 
@@ -82,7 +84,8 @@ A beautiful and feature-rich QR code generator built with SvelteKit and DaisyUI,
 
 ## Credits
 
-This project uses the [qr-code-styling](https://qr-code-styling.com/) library by Denys Kozak for QR code generation and styling.
+This project uses the [qr-code-styling](https://qr-code-styling.com/)
+library by Denys Kozak for QR code generation and styling.
 
 ## License
 

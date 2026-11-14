@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { qr_state } from '$lib/state/qr-code.state.svelte';
+	import { qr_state } from '#lib/state/qr-code.state.svelte.ts';
 	import {
 		copy_to_clipboard,
 		download_qr,
@@ -21,11 +21,11 @@
 	});
 </script>
 
-<main class="bg-base-200 min-h-screen py-8">
+<main class="min-h-screen bg-base-200 py-8">
 	<div class="container mx-auto px-4">
 		<header class="mb-8 text-center">
 			<h1 class="text-4xl font-bold">QR Code Generator</h1>
-			<p class="text-base-content/70 mt-2">
+			<p class="mt-2 text-base-content/70">
 				Create beautiful, customized QR codes in seconds
 			</p>
 		</header>
@@ -38,7 +38,7 @@
 						<!-- Main Options -->
 						<fieldset class="rounded-box bg-base-200">
 							<legend
-								class="rounded-box bg-base-300 w-full px-4 py-2"
+								class="w-full rounded-box bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Main Options</h3>
 							</legend>
@@ -50,7 +50,7 @@
 										type="url"
 										bind:value={qr_state.url_input}
 										placeholder="https://example.com"
-										class="input bg-base-100 mt-2 w-full border-0 focus:outline-none"
+										class="input mt-2 w-full border-0 bg-base-100 focus:outline-none"
 									/>
 								</label>
 
@@ -60,7 +60,7 @@
 									<input
 										type="file"
 										accept="image/*"
-										class="file-input file-input-sm bg-base-100 mt-2 w-full border-0"
+										class="file-input mt-2 w-full border-0 bg-base-100 file-input-sm"
 										onchange={(e) => {
 											const input = e.target as HTMLInputElement;
 											const file = input.files?.[0];
@@ -95,7 +95,7 @@
 											min="100"
 											max="500"
 											step="10"
-											class="range range-xs flex-1"
+											class="range flex-1 range-xs"
 											oninput={generate_qr_code}
 										/>
 										<span class="text-xs opacity-60">500px</span>
@@ -118,7 +118,7 @@
 											min="0"
 											max="50"
 											step="5"
-											class="range range-xs flex-1"
+											class="range flex-1 range-xs"
 											oninput={generate_qr_code}
 										/>
 										<span class="text-xs opacity-60">50px</span>
@@ -128,10 +128,10 @@
 						</fieldset>
 
 						<!-- Dots Options -->
-						<fieldset class="bg-base-200 collapse">
+						<fieldset class="collapse bg-base-200">
 							<input type="checkbox" class="min-h-0" checked />
 							<legend
-								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">Dots Options</h3>
 							</legend>
@@ -140,7 +140,7 @@
 									<span class="label-text">Pattern</span>
 									<select
 										bind:value={qr_state.dot_style}
-										class="select select-sm bg-base-100 mt-2 w-full border-0"
+										class="select mt-2 w-full border-0 bg-base-100 select-sm"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -197,10 +197,10 @@
 						</fieldset>
 
 						<!-- Corner Square Options -->
-						<fieldset class="bg-base-200 collapse">
+						<fieldset class="collapse bg-base-200">
 							<input type="checkbox" class="min-h-0" checked />
 							<legend
-								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Square Options
@@ -211,7 +211,7 @@
 									<span class="label-text">Pattern</span>
 									<select
 										bind:value={qr_state.corner_square_style}
-										class="select select-sm bg-base-100 mt-2 w-full border-0"
+										class="select mt-2 w-full border-0 bg-base-100 select-sm"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -264,10 +264,10 @@
 						</fieldset>
 
 						<!-- Corner Dot Options -->
-						<fieldset class="bg-base-200 collapse">
+						<fieldset class="collapse bg-base-200">
 							<input type="checkbox" class="min-h-0" checked />
 							<legend
-								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Corner Dot Options
@@ -278,7 +278,7 @@
 									<span class="label-text">Pattern</span>
 									<select
 										bind:value={qr_state.corner_dot_style}
-										class="select select-sm bg-base-100 mt-2 w-full border-0"
+										class="select mt-2 w-full border-0 bg-base-100 select-sm"
 										onchange={generate_qr_code}
 									>
 										<option value="rounded">Rounded</option>
@@ -328,10 +328,10 @@
 						</fieldset>
 
 						<!-- Background Options -->
-						<fieldset class="bg-base-200 collapse">
+						<fieldset class="collapse bg-base-200">
 							<input type="checkbox" class="min-h-0" checked />
 							<legend
-								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">
 									Background Options
@@ -380,10 +380,10 @@
 
 						<!-- Image Options -->
 						{#if qr_state.image_src}
-							<fieldset class="bg-base-200 collapse">
+							<fieldset class="collapse bg-base-200">
 								<input type="checkbox" class="min-h-0" checked />
 								<legend
-									class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+									class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 								>
 									<h3 class="text-sm font-medium">Image Options</h3>
 								</legend>
@@ -416,7 +416,7 @@
 												min="0.1"
 												max="0.9"
 												step="0.1"
-												class="range range-xs flex-1"
+												class="range flex-1 range-xs"
 												oninput={generate_qr_code}
 											/>
 											<span class="text-xs opacity-60">90%</span>
@@ -438,7 +438,7 @@
 												min="0"
 												max="20"
 												step="1"
-												class="range range-xs flex-1"
+												class="range flex-1 range-xs"
 												oninput={generate_qr_code}
 											/>
 											<span class="text-xs opacity-60">20px</span>
@@ -449,10 +449,10 @@
 						{/if}
 
 						<!-- QR Options -->
-						<fieldset class="bg-base-200 collapse">
+						<fieldset class="collapse bg-base-200">
 							<input type="checkbox" class="min-h-0" checked />
 							<legend
-								class="collapse-title bg-base-300 min-h-0 px-4 py-2"
+								class="collapse-title min-h-0 bg-base-300 px-4 py-2"
 							>
 								<h3 class="text-sm font-medium">QR Options</h3>
 							</legend>
@@ -464,7 +464,7 @@
 										bind:value={qr_state.type_number}
 										min="0"
 										max="40"
-										class="input input-sm bg-base-100 mt-2 w-full border-0"
+										class="input input-sm mt-2 w-full border-0 bg-base-100"
 										oninput={generate_qr_code}
 									/>
 								</label>
@@ -473,7 +473,7 @@
 									<span class="label-text">Error Correction</span>
 									<select
 										bind:value={qr_state.error_correction}
-										class="select select-sm bg-base-100 mt-2 w-full border-0"
+										class="select mt-2 w-full border-0 bg-base-100 select-sm"
 										onchange={generate_qr_code}
 									>
 										<option value="L">Low (7%)</option>
@@ -494,7 +494,7 @@
 					<div class="card-body">
 						<h2 class="card-title">Preview</h2>
 						<div
-							class="rounded-box bg-base-200/50 flex aspect-square w-full items-center justify-center"
+							class="flex aspect-square w-full items-center justify-center rounded-box bg-base-200/50"
 							bind:this={element}
 						></div>
 						<div class="card-actions justify-end gap-2">

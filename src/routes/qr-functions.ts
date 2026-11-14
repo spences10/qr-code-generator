@@ -1,4 +1,4 @@
-import { qr_state } from '$lib/state/qr-code.state.svelte';
+import { qr_state } from '#lib/state/qr-code.state.svelte.ts';
 
 export const generate_qr_code = async () => {
 	if (!qr_state.qr_config.data) return;
