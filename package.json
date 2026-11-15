@@ -34,7 +34,7 @@
 		"svelte": "^5.57.2",
 		"svelte-check": "^4.7.7",
 		"tailwindcss": "^4.1.18",
-		"typescript": "6.0.3",
+		"typescript": "7.0.2",
 		"vite": "npm:@voidzero-dev/vite-plus-core@1.6.0",
 		"vite-plus": "1.6.0",
 		"vitest": "5.1.0",
