@@ -464,7 +464,7 @@
 										bind:value={qr_state.type_number}
 										min="0"
 										max="40"
-										class="input input-sm mt-2 w-full border-0 bg-base-100"
+										class="input mt-2 w-full border-0 bg-base-100 input-sm"
 										oninput={generate_qr_code}
 									/>
 								</label>
